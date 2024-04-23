@@ -46,29 +46,38 @@ Per exemple:
 Si tenim [“hola”, “Php”, “Html”] retornarà true si preguntem per “h” però fals si 
 preguntem per “l”. */
 
-function char(array $Y, string $S){
-    $array_size=count($Y);
+function encontrarLetra(array $Palabras, string $letra):void{
+    $array_size=count($Palabras);
     $character=0;
     $palabra=" ";
-    foreach ($Y as $key => $value) {
+    $letra_encontrada=false;
+    foreach ($Palabras as $key => $value) {
         $palabra=$value;
         $palabra=str_split($palabra);
-             foreach ($palabra as $key => $value) {
-                if ($value==$S) {
-                    $character=$character+1;
+            foreach ($palabra as $key => $value) {
+                if ($value==$letra) {
+                    $letra_encontrada=true;
                 }
-             }         
+                if($letra_encontrada==true){
+                    $character=$character+1;
+                    break;
+                   }
+            }   
+    }         
+    if ($array_size==$character) {
+            echo "La letra buscada se encuentra en todas las palabras del Array";
         }
-        if ($array_size==$character) {
-            return true;            
-        }
-} 
+        else{
+            echo "La letra buscada no se encuentra en todas las palabras del array, intenta con otra";
+        }          
+}
 
-$char2= char($Z=["hola","soy", "balon", "canballo"], "o");
+$existeLetra= encontrarLetra($Z=["hola","soya", "balona", "caballo","otra"], "n");
 
-echo $char2;
+
 
 echo "<h3>Excerici4</h3>";
+
 /*- Exercici 4
 Fes un array associatiu que representi informació de tu mateix/a. 
 En concret ha d’incloure:
